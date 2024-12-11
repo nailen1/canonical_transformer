@@ -1,5 +1,4 @@
 
-
 def rename_columns(df, mapping):
     df = df.rename(columns=mapping)
     df.columns = [col.upper() for col in df.columns]
