@@ -1,6 +1,6 @@
 import os
 import json
-from .data_utils import map_df_to_data
+from .dataframe_utils import map_df_to_data
 
 
 def save_df_as_csv(df, file_folder, file_name):
