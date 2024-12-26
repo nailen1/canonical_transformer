@@ -8,7 +8,7 @@ data-test/
 .ipynb_checkpoints/
 test*.ipynb
 
-# markdown
+# commands markdown document
 commands.md
 
 # Byte-compiled / optimized / DLL files
