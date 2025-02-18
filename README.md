@@ -35,7 +35,6 @@ map_df_to_csv(df=my_dataframe, file_folder='./', file_name='my_csv_file.csv')
 ## Requirements
 
 - Python >= 3.6
-- numpy >= 2.1.3
 - pandas >= 2.2.3
 - python-dateutil >= 2.9.0
 - pytz >= 2024.2
@@ -45,6 +44,14 @@ map_df_to_csv(df=my_dataframe, file_folder='./', file_name='my_csv_file.csv')
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Contributing
+## Author
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+**June Young Park**  
+AI Management Development Team Lead & Quant Strategist at LIFE Asset Management
+
+LIFE Asset Management is a hedge fund management firm that integrates value investing and engagement strategies with quantitative approaches and financial technology, headquartered in Seoul, South Korea.
+
+## Contact
+
+- Email: juneyoungpaak@gmail.com
+- Location: TWO IFC, Yeouido, Seoul

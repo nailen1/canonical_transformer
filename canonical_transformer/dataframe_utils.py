@@ -1,7 +1,7 @@
 import pandas as pd
 from .format_utils import capitalize_column_names_in_df
 
-def map_df_to_data(df, capitalize=False):
+def transform_df_to_data(df, capitalize=False):
     """
     Convert a DataFrame to a list of dictionaries.
 
@@ -19,7 +19,7 @@ def map_df_to_data(df, capitalize=False):
     data = df.to_dict(orient='records')
     return data
 
-def map_data_to_df(data):
+def transform_data_to_df(data):
     """
     Convert a list of dictionaries to a DataFrame.
 
@@ -31,3 +31,18 @@ def map_data_to_df(data):
     """
     df = pd.DataFrame(data)
     return df
+
+def get_data_in_df(df, cols):
+    """
+    Get data in a DataFrame.
+
+    Parameters:
+    df (pd.DataFrame): The DataFrame to get data from.
+    cols (list): The columns to use as the data. If None, the first column will be used as index.
+
+    Returns:
+    dict: The data in the DataFrame.
+    """
+    df = df[cols].set_index(cols[0])
+    data = transform_df_to_data(df)
+    return data
