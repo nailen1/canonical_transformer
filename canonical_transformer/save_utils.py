@@ -1,6 +1,6 @@
 import os
 import json
-from .alias_functions import map_df_to_data
+from .dataframe_utils import transform_df_to_data
 
 def save_df_as_csv(df, file_folder, file_name, include_index=False):
     """
@@ -49,7 +49,7 @@ def save_df_as_json(df, file_folder, file_name):
     Returns:
     None
     """
-    data = map_df_to_data(df)
+    data = transform_df_to_data(df)
     
     print("| Transformed df to json data")
     save_data_as_json(data, file_folder, file_name)
