@@ -2,10 +2,9 @@ from setuptools import setup, find_packages
 
 setup(
     name='canonical_transformer',
-    version='0.1.3',
+    version='0.1.7',
     packages=find_packages(),
     install_requires=[
-        'numpy>=2.1.3',
         'pandas>=2.2.3',
         'python-dateutil>=2.9.0',
         'pytz>=2024.2',
