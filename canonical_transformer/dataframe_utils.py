@@ -46,3 +46,8 @@ def get_data_in_df(df, cols):
     df = df[cols].set_index(cols[0])
     data = transform_df_to_data(df)
     return data
+
+def get_mapping_of_column_pairs(df, key_col, value_col):
+    data = get_data_in_df(df, cols=[key_col, value_col])
+    mapping = {datum[key_col]: datum[value_col] for datum in data}
+    return mapping
