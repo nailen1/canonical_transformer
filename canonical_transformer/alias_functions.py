@@ -3,12 +3,13 @@ This module provides alias functions for saving data in different formats.
 """
 
 from .save_utils import save_df_as_csv, save_df_as_json, save_data_as_json, save_df_as_csv_including_korean
-from .dataframe_utils import transform_df_to_data, transform_data_to_df, get_data_in_df
+from .dataframe_utils import transform_df_to_data, transform_data_to_df, get_data_in_df, transform_df_to_data_including_index
 from .loader_utils import load_csv_file, load_json_file
 
 map_df_to_data = transform_df_to_data
 map_data_to_df = transform_data_to_df
 map_df_to_some_data = get_data_in_df
+map_df_to_data_including_index = transform_df_to_data_including_index
 
 # Aliases for saving DataFrame as CSV
 map_df_to_csv = save_df_as_csv

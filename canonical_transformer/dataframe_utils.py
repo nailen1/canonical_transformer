@@ -46,3 +46,9 @@ def get_data_in_df(df, cols):
     df = df[cols].set_index(cols[0])
     data = transform_df_to_data(df)
     return data
+
+def transform_df_to_data_including_index(df, index_name=None):
+    df.index.name = index_name if index_name else df.index.name
+    df = df.reset_index()
+    data = transform_df_to_data(df)
+    return data
