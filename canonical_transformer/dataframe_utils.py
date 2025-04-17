@@ -19,17 +19,20 @@ def transform_df_to_data(df, capitalize=False):
     data = df.to_dict(orient='records')
     return data
 
-def transform_data_to_df(data):
+def transform_data_to_df(data, option_index_col=None):
     """
     Convert a list of dictionaries to a DataFrame.
 
     Parameters:
     data (list): A list of dictionaries to convert.
+    option_index_col (int, optional): The index of the column to use as the index. Defaults to None.
 
     Returns:
     pd.DataFrame: The resulting DataFrame.
     """
     df = pd.DataFrame(data)
+    if option_index_col is not None:
+        df = df.set_index(df.columns[option_index_col])
     return df
 
 def get_data_in_df(df, cols):
