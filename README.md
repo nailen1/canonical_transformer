@@ -47,6 +47,9 @@ negative_value = format_number_with_sign(-5.678, decimal_digits=1)  # returns '-
 
 ## Version History
 
+### v0.2.7
+- Enhanced `format_number_with_sign` function with non-integer decimal_digits parameter handling
+
 ### v0.2.6
 - Added number formatting utilities with explicit sign display
 - Added `format_number_with_sign` function for formatting numbers with explicit positive/negative signs

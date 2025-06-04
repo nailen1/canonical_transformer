@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='canonical_transformer',
-    version='0.2.6',
+    version='0.2.7',
     packages=find_packages(),
     install_requires=[
         'pandas>=2.2.3',

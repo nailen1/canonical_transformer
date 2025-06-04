@@ -47,7 +47,7 @@ def format_number_with_sign(value: Union[float, int, Any], decimal_digits: int) 
         if math.isnan(num_value) or math.isinf(num_value):
             return value
         
-        return f"{num_value:+.{decimal_digits}f}"
+        return f"{num_value:+.{decimal_digits}f}" if isinstance(decimal_digits, int) else f"{num_value:+f}"
         
     except (ValueError, TypeError):
         return value
