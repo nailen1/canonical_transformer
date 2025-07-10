@@ -2,13 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='canonical_transformer',
-    version='1.0.1',
+    version='1.0.2',
     packages=find_packages(),
     install_requires=[
-        'pandas>=2.2.3',
-        'python-dateutil>=2.9.0',
-        'pytz>=2024.2',
-        'typing_extensions>=4.12.2'
+        req.strip() for req in open("requirements.txt", encoding="utf-8")
+        if req.strip() and not req.strip().startswith("#")
     ],
     author='June Young Park',
     author_email='juneyoungpaak@gmail.com',
