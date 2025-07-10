@@ -1,15 +1,31 @@
 import os
 import json
+import numpy as np
 from .map_data import map_data_to_df
 from .map_df import map_df_to_csv
 from canonical_transformer.functionals import pipe
 from functools import partial
 
 
+def convert_null_to_nan(obj):
+    """Convert null values back to NaN for data consistency"""
+    if isinstance(obj, dict):
+        return {key: convert_null_to_nan(value) for key, value in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_null_to_nan(item) for item in obj]
+    elif obj is None:
+        return np.nan
+    else:
+        return obj
+
+
 def map_json_to_data(file_folder, file_name):
     file_path = os.path.join(file_folder, file_name)
     with open(file_path, 'r') as f:
-        return json.load(f)
+        data = json.load(f)
+    
+    # Convert null values back to NaN for data consistency
+    return convert_null_to_nan(data)
     
 def map_json_to_df(file_folder, file_name):
     return pipe(
