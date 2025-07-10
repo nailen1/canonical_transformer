@@ -1,43 +1,100 @@
-# Canonical Transformer
+# Canonical Transformer v1.0.0
 
-A Python module for canonical data transformations between different data types and formats. Provides standardized mappings between DataFrames, dictionaries, files, and other data structures.
+A Python module for ensuring **structural isomorphism** and **commutative consistency** across data transformations.  
+This toolkit provides mathematically reversible mappings between `pandas.DataFrame`, `dict`, `CSV`, and `JSON` formats—preserving data structure, types, and semantics regardless of transformation order.
+
+---
 
 ## Features
 
-- DataFrame to Dictionary conversion
-- Dictionary to DataFrame conversion
-- DataFrame to CSV file transformation
-- CSV file to DataFrame loading
-- Standardized data type mapping
-- Number formatting with explicit sign display
-- Simple and consistent API
+### Isomorphism Guarantees
+
+- **Bijective Mappings**: Each transformation has a unique and total inverse
+- **Structure Integrity**: Index, column types, and ordering are preserved
+- **Semantic Equivalence**: Original data meaning remains unchanged
+
+### Commutative Transformations
+
+- **Order-Invariance**: `A → B → C` ≡ `A → C → B`
+- **Round-trip Identity**: `T⁻¹ ∘ T(x) = x` for all supported types
+- **Transformation Algebra**: Composition, associativity, identity supported
+
+### Supported Formats
+
+- `pandas.DataFrame` ↔ `dict` ↔ `CSV` ↔ `JSON`
+- Full interoperability under unified transformation rules
+- Automatic type casting and structural validation
+
+---
+
+## Core Capabilities
+
+```
+df → dict → csv → json → df      # Exact round-trip equivalence
+dict → csv → json → df → dict   # Commutative, isomorphic recovery
+```
+
+These transformations preserve:
+
+- Data fidelity (values and types)
+- Index and column structure
+- Missing value handling (e.g., NaN ≈ None)
+
+---
 
 ## Installation
 
-```bash
-pip install canonical-transformer
 ```
+pip install canonical-transformer==1.0.0
+```
+
+---
 
 ## Quick Start
 
 ```python
 from canonical_transformer import *
 
-# map DataFrame to dict
-my_dict = map_df_to_data(my_dataframe)
+df = pd.DataFrame({
+    'id': [1, 2, 3],
+    'name': ['Alice', 'Bob', 'Charlie'],
+    'value': [10.5, -20.3, 30.0]
+})
 
-# map Dict to DataFrame
-result_df = map_data_to_df(my_dict)
+# Commutative round-trip transformation
+df2 = map_json_to_df(
+           map_csv_to_json(
+               map_data_to_csv(
+                   map_df_to_data(df), '.', 'out.csv'
+               ), '.', 'out.csv'))
 
-# map DataFrame to CSV with standard format
-map_df_to_csv(df=my_dataframe, file_folder='./', file_name='my_csv_file.csv')
-
-# format numbers with explicit sign
-formatted_value = format_number_with_sign(1.234, decimal_digits=2)  # returns '+1.23'
-negative_value = format_number_with_sign(-5.678, decimal_digits=1)  # returns '-5.7'
+assert df.equals(df2)  # True
 ```
 
-## Requirements
+---
+
+## Mathematical Properties
+
+### Isomorphism
+
+- **Injectivity**: Each input maps to a unique output
+- **Surjectivity**: All outputs can be traced back to inputs
+- **Bijectivity**: Reversible one-to-one mapping
+
+### Commutativity
+
+- **Order Independence**: Transformations commute
+- **Associativity**: Grouping doesn’t affect result
+- **Identity**: `T⁻¹ ∘ T = id`
+
+### Homomorphism
+
+- **Structure Preservation**: Index, type, ordering maintained
+- **Format Standardization**: Consistent formatting across outputs
+
+---
+
+## 📦 Requirements
 
 - Python >= 3.6
 - pandas >= 2.2.3
@@ -45,33 +102,37 @@ negative_value = format_number_with_sign(-5.678, decimal_digits=1)  # returns '-
 - pytz >= 2024.2
 - typing_extensions >= 4.12.2
 
-## Version History
+---
 
-### v0.2.7
-- Enhanced `format_number_with_sign` function with non-integer decimal_digits parameter handling
+## 📈 Version History
 
-### v0.2.6
-- Added number formatting utilities with explicit sign display
-- Added `format_number_with_sign` function for formatting numbers with explicit positive/negative signs
-- Added utility functions for converting between signed strings and numbers
+### v1.0.0
 
-### v0.2.5
-- Added number formatting utilities with explicit sign display
-- Added `format_number_with_sign` function for formatting numbers with explicit positive/negative signs
-- Added utility functions for converting between signed strings and numbers
+- Structural isomorphism guaranteed
+- Bidirectional reversible transformations
+- Full commutative consistency
+- Format and type standardization
 
-## License
+### v0.2.x
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+- Number formatting utilities
+- Sign-preserving float formatting
 
-## Author
+---
+
+## 👤 Author
 
 **June Young Park**  
-AI Management Development Team Lead & Quant Strategist at LIFE Asset Management
+AI Systems Architect @ LIFE Asset Management  
+📧 juneyoungpaak@gmail.com  
+📍 TWO IFC, Yeouido, Seoul
 
-LIFE Asset Management is a hedge fund management firm that integrates value investing and engagement strategies with quantitative approaches and financial technology, headquartered in Seoul, South Korea.
+> LIFE Asset Management is a hedge fund management firm that integrates value investing and engagement strategies with quantitative modeling and AI infrastructure.
 
-## Contact
+---
 
-- Email: juneyoungpaak@gmail.com
-- Location: TWO IFC, Yeouido, Seoul
+## 📖 License
+
+MIT License – see `LICENSE` file for details.
+
+---
