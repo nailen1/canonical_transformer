@@ -43,38 +43,14 @@ def validate_index(df_ref, df, option_verbose=True):
     return True
 
 def validate_index_string(df_ref, df, option_verbose=True):
-    """Enhanced datetime index validation for pseudo isomorphism stability"""
-    try:
-        # Handle datetime indices with improved stability
-        if isinstance(df_ref.index, pd.DatetimeIndex) and isinstance(df.index, pd.DatetimeIndex):
-            # For datetime indices, compare normalized timestamps
-            index_ref_normalized = pd.to_datetime(df_ref.index).normalize()
-            index_normalized = pd.to_datetime(df.index).normalize()
-            if not index_ref_normalized.equals(index_normalized):
-                if option_verbose:
-                    print(f"datetime index_ref: {index_ref_normalized}")
-                    print(f"datetime index: {index_normalized}")
-                return False
-        else:
-            # For non-datetime indices, use string comparison
-            index_ref = df_ref.index.astype(str)
-            index = df.index.astype(str)
-            if not index_ref.equals(index):
-                if option_verbose:
-                    print(f"index_ref: {index_ref}")
-                    print(f"index: {index}")
-                return False
-        return True
-    except Exception as e:
+    index_ref = df_ref.index.astype(str)
+    index = df.index.astype(str)
+    if not index_ref.equals(index):
         if option_verbose:
-            print(f"Index validation error: {e}")
-        # Fallback to basic string comparison
-        try:
-            index_ref = df_ref.index.astype(str)
-            index = df.index.astype(str)
-            return index_ref.equals(index)
-        except:
-            return False
+            print(f"index_ref: {index_ref}")
+            print(f"index: {index}")
+        return False
+    return True
 
 def is_missing(x):
     return pd.isna(x)
