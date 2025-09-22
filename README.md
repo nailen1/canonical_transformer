@@ -1,4 +1,4 @@
-# Canonical Transformer v1.0.7
+# Canonical Transformer v1.0.8
 
 A Python module for ensuring **structural isomorphism** and **commutative consistency** across data transformations.  
 This toolkit provides mathematically reversible mappings between `pandas.DataFrame`, `dict`, `CSV`, and `JSON` formats—preserving data structure, types, and semantics regardless of transformation order.
