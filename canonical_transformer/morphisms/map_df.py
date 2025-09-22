@@ -1,7 +1,8 @@
 import os
+import pandas as pd
 from functools import partial
 from canonical_transformer.functionals import pipe
-from canonical_transformer.isomorphisms import validate_df_pseudo_isomorphism, validate_data_isomorphism
+from canonical_transformer.isomorphisms import validate_df_isomorphism, validate_df_pseudo_isomorphism
 from .map_data import map_data_to_json
 from .basis import standardize_file_name_for_csv
 
@@ -17,7 +18,7 @@ def map_df_to_data(df):
     data = df.to_dict(orient='records')
     return data
 
-def map_df_to_csv(df, file_folder, file_name, encoding='utf-8-sig', option_verbose=True):
+def map_df_to_csv(df, file_folder, file_name, encoding='utf-8-sig', option_verbose=True, option_datetime_index_validity=False):
     df_ref = df
     df = df.copy()
     if df.index.name:
@@ -29,7 +30,10 @@ def map_df_to_csv(df, file_folder, file_name, encoding='utf-8-sig', option_verbo
         print(f"| Saved csv to {file_path}")
     from .map_csv import map_csv_to_df
     df_csv = map_csv_to_df(file_folder, file_name)
-    is_isomorphism = validate_df_pseudo_isomorphism(df_ref, df_csv)
+    if isinstance(df_ref.index, pd.DatetimeIndex) and option_datetime_index_validity:
+        is_isomorphism = validate_df_isomorphism(df_ref, df_csv)
+    else:
+        is_isomorphism = validate_df_pseudo_isomorphism(df_ref, df_csv)
     if is_isomorphism:
         return df_csv
     else:

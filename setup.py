@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='canonical_transformer',
-    version='1.0.6',
+    version='1.0.7',
     packages=find_packages(),
     install_requires=[
         req.strip() for req in open("requirements.txt", encoding="utf-8")
